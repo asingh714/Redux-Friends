@@ -30,7 +30,7 @@ class Login extends React.Component {
     return (
       <div className="login-form">
         <form onSubmit={this.login}>
-          <label for="username">Account</label>
+          <label htmlFor="username">Account</label>
           <input
             type="text"
             name="username"
@@ -38,7 +38,7 @@ class Login extends React.Component {
             value={this.state.credentials.username}
             onChange={this.handleChange}
           />
-          <label for="password">Password</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
