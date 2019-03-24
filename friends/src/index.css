@@ -1,14 +1,141 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+:root {
+  --primary-color: #59dab8;
+  --dark-blue: #1f2a38;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.error {
+  font-size: 12px;
+  color: white;
+  padding: 4px;
+  width: calc(100% - 16px);
+  border-radius: 12px;
+  border: 1px solid #e67373;
+  margin: 8px auto 6px;
+  background-color: #f98484;
+}
+
+.App {
+  height: 100%;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+
+ul {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+li {
+  list-style: none;
+  margin-right: 6px;
+}
+
+a {
+  text-decoration: none;
+  padding: 6px;
+  color: var(--primary-color);
+}
+
+.login-form {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+      120deg,
+      rgb(132, 250, 176, 0.45),
+      rgb(89, 218, 184, 0.45)
+    ),
+    url('https://images.unsplash.com/photo-1486704155675-e4c07f8ad160?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80')
+      no-repeat fixed center;
+  background-size: auto 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 150px;
+  height: 250px;
+  padding: 36px;
+  background-color: var(--dark-blue);
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+form > label {
+  align-self: flex-start;
+  color: #ffffff;
+  font-size: 12px;
+  margin-bottom: -6px;
+}
+
+form > input {
+  font-size: 16px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 16px;
+  padding: 6px 10px;
+  color: var(--dark-blue);
+}
+
+::placeholder {
+  color: #bdbdbd;
+}
+
+input:focus,
+input:active {
+  outline: none;
+}
+
+.flex-spacer {
+  flex-grow: 1;
+}
+
+form > button {
+  border: none;
+  padding: 6px;
+  border-radius: 18px;
+  background-color: var(--primary-color);
+  border: 1px solid #19212c;
+  font-size: 16px;
+}
+
+.friends {
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.friend-card {
+  position: relative;
+  width: 280px;
+  background-color: #ffffff;
+  margin-bottom: 16px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.fa-times {
+  position: absolute;
+  right: 8px;
+  top: 6px;
+  color: #fa7981;
+  cursor: pointer;
 }
