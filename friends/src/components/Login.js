@@ -23,7 +23,9 @@ class Login extends React.Component {
 
   login = event => {
     event.preventDefault();
-    this.props.login(this.state.credentials);
+    this.props
+      .login(this.state.credentials)
+      .then(() => this.props.history.push("/protected"));
   };
 
   render() {
