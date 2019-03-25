@@ -23,5 +23,7 @@ export const getData = () => dispatch => {
   .then(response => {
     dispatch({ type: FETCH_DATA_SUCCESS, payload: response.data })
   })
-  .catch(error => console.log(error.response))
+  .catch(error => {
+    dispatch({ type: FETCH_DATA_FAILURE, payload: error.response })
+  })
 }
