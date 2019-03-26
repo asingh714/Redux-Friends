@@ -2,6 +2,7 @@ import {
   LOGIN_START,
   LOGIN_SUCCESS,
   FETCH_DATA_START,
+  FETCH_DATA_SUCCESS,
   FETCH_DATA_FAILURE
 } from "../actions";
 
@@ -32,7 +33,14 @@ const reducer = (state = initialState, action) => {
         ...state,
         fetchingFriends: true
       };
-
+    case FETCH_DATA_SUCCESS: 
+      return {
+        ...state,
+        error: "",
+        errorStatusCode: null,
+        fetchingFriends: false,
+        friends: action.payload
+      }
     case FETCH_DATA_FAILURE:
       return {
         ...state,

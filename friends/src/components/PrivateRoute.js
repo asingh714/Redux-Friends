@@ -12,7 +12,7 @@ const PrivateRoute = ({
     <Route
       {...rest}
       render={props =>
-        token && !errorStatusCode === 403 ? (
+        token && errorStatusCode !== 403 ? (
           <Component {...props} />
         ) : (
           <Redirect to="/login" />
