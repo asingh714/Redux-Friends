@@ -2,7 +2,7 @@ import React from 'react';
 import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 
-// import { addFriend } from '../actions';
+import { addFriend } from '../actions';
 
 class FriendForm extends React.Component {
   state = {
@@ -93,5 +93,5 @@ const mapStateToProps = ({ }) => ({
 
 export default connect(
   mapStateToProps,
-  { }
+  { addFriend }
 )(FriendForm);

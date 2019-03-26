@@ -6,10 +6,17 @@ import {
   FETCH_DATA_SUCCESS,
   FETCH_DATA_FAILURE,
   DELETE_START,
-  DELETE_SUCCESS
+  DELETE_SUCCESS,
+  ADD_FRIEND_START,
+  ADD_FRIEND_SUCCESS,
+  ADD_FRIEND_FAILURE,
+  EDIT_FRIEND_START,
+  EDIT_FRIEND_SUCCESS,
+  EDIT_FRIEND_FAILURE
 } from "../actions";
 
 const initialState = {
+  addingFriend: false,
   friends: [],
   error: "",
   errorStatusCode: null,
@@ -71,6 +78,32 @@ const reducer = (state = initialState, action) => {
         error: action.payload.data.error,
         errorStatusCode: action.payload.status,
         fetchingFriends: false
+      };
+    case ADD_FRIEND_START:
+      return {
+        ...state,
+        addingFriend: true
+      };
+    case ADD_FRIEND_SUCCESS:
+      return {
+        ...state,
+        addingFriend: false,
+        error: "",
+        errorStatusCode: null,
+        friends: action.payload
+      };
+    case EDIT_FRIEND_START:
+      return {
+        ...state,
+        editingFriend: true
+      };
+    case EDIT_FRIEND_SUCCESS:
+      return {
+        ...state,
+        editingFriend: false,
+        error: "",
+        errorStatusCode: null,
+        friends: action.payload
       };
     default:
       return state;
