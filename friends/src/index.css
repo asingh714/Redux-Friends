@@ -66,7 +66,7 @@ a {
   align-items: center;
 }
 
-form {
+.form {
   display: flex;
   flex-flow: column nowrap;
   width: 150px;
@@ -84,6 +84,16 @@ form > label {
   margin-bottom: -6px;
 }
 
+.edit-form {
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 16px;
+}
+
+.edit-form > label {
+  color: var(--dark-blue);
+}
+
 form > input {
   font-size: 16px;
   margin: 10px 0;
@@ -91,6 +101,10 @@ form > input {
   border-radius: 16px;
   padding: 6px 10px;
   color: var(--dark-blue);
+}
+
+.edit-form > input {
+  border: 1px solid var(--dark-blue);
 }
 
 ::placeholder {
@@ -113,6 +127,10 @@ form > button {
   background-color: var(--primary-color);
   border: 1px solid #19212c;
   font-size: 16px;
+}
+
+.edit-form > button {
+  border: none;
 }
 
 .friends {
@@ -138,4 +156,26 @@ form > button {
   top: 6px;
   color: #fa7981;
   cursor: pointer;
+}
+
+.fa-pencil-alt {
+  position: absolute;
+  right: 26px;
+  top: 6px;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.friend-form {
+  height: 100%;
+  width: 100%;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(120deg, rgb(132, 250, 176), rgb(89, 218, 184));
+}
+
+.friend-form > h2 {
+  margin: 0 0 24px;
 }
