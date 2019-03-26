@@ -3,12 +3,23 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Loader from 'react-loader-spinner';
 
-import { getData } from "../actions";
+import { getData, deleteFriends } from "../actions";
 
 class FriendsList extends React.Component {
+
+  state = {
+    deletingFriendId: null
+  }
+
   componentDidMount() {
     this.props.getData();
   }
+
+  deleteFriend = id => {
+    this.setState({ deletingFriendId: id })
+    this.props.deleteFriends(id);
+  }
+
   render() {
     if (this.props.fetchingFriends)
       return <Loader type="Puff" color="#59dab8" height="100" width="100" />;
@@ -34,15 +45,16 @@ class FriendsList extends React.Component {
   }
 }
 
-const mapStateToProps = ({ friends, fetchingFriends }) => ({
+const mapStateToProps = ({ friends, fetchingFriends, deletingFriend }) => ({
   friends,
-  fetchingFriends
+  fetchingFriends,
+  deletingFriend
 })
 
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { getData }
+    { getData, deleteFriends }
   )(FriendsList)
 );

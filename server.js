@@ -122,7 +122,9 @@ app.delete('/api/friends/:id', authenticator, (req, res) => {
 
   friends = friends.filter(f => f.id !== Number(id));
 
-  res.send(friends);
+  setTimeout(() => {
+    res.send(friends);
+  }, 1500)
 });
 
 function getNextId() {

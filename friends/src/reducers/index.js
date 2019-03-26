@@ -1,9 +1,12 @@
 import {
+  USER_UNAUTHORIZED,
   LOGIN_START,
   LOGIN_SUCCESS,
   FETCH_DATA_START,
   FETCH_DATA_SUCCESS,
-  FETCH_DATA_FAILURE
+  FETCH_DATA_FAILURE,
+  DELETE_START,
+  DELETE_SUCCESS
 } from "../actions";
 
 const initialState = {
@@ -12,7 +15,8 @@ const initialState = {
   errorStatusCode: null,
   loggingIn: false,
   token: localStorage.getItem("token"),
-  fetchingFriends: false
+  fetchingFriends: false,
+  deletingFriend: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -33,21 +37,41 @@ const reducer = (state = initialState, action) => {
         ...state,
         fetchingFriends: true
       };
-    case FETCH_DATA_SUCCESS: 
+    case FETCH_DATA_SUCCESS:
       return {
         ...state,
         error: "",
         errorStatusCode: null,
         fetchingFriends: false,
         friends: action.payload
-      }
+      };
     case FETCH_DATA_FAILURE:
       return {
         ...state,
         error: action.payload.data.error,
         errorStatusCode: action.payload.status,
-        fetchingFriends:false,
-      }
+        fetchingFriends: false
+      };
+    case DELETE_START:
+      return {
+        ...state,
+        deletingFriend: true
+      };
+    case DELETE_SUCCESS:
+      return {
+        ...state,
+        deletingFriend: false,
+        error: "",
+        errorStatusCode: null,
+        friends: action.payload
+      };
+    case USER_UNAUTHORIZED:
+      return {
+        ...state,
+        error: action.payload.data.error,
+        errorStatusCode: action.payload.status,
+        fetchingFriends: false
+      };
     default:
       return state;
   }
