@@ -66,14 +66,14 @@ export const addFriend = friend => dispatch => {
     .post('http://localhost:5000/api/friends', friend, {
       headers: { Authorization: localStorage.getItem('token') }
     })
-    .then(res => {
-      dispatch({ type: ADD_FRIEND_SUCCESS, payload: res.data });
+    .then(response => {
+      dispatch({ type: ADD_FRIEND_SUCCESS, payload: response.data });
     })
-    .catch(err => {
-      if (err.response.status === 403) {
-        dispatch({ type: USER_UNAUTHORIZED, payload: err.response });
+    .catch(error => {
+      if (error.response.status === 403) {
+        dispatch({ type: USER_UNAUTHORIZED, payload: error.response });
       } else {
-        dispatch({ type: ADD_FRIEND_FAILURE, payload: err.response });
+        dispatch({ type: ADD_FRIEND_FAILURE, payload: error.response });
       }
     });
 };

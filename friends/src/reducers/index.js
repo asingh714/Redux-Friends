@@ -10,9 +10,9 @@ import {
   ADD_FRIEND_START,
   ADD_FRIEND_SUCCESS,
   ADD_FRIEND_FAILURE,
-  EDIT_FRIEND_START,
-  EDIT_FRIEND_SUCCESS,
-  EDIT_FRIEND_FAILURE
+  // EDIT_FRIEND_START,
+  // EDIT_FRIEND_SUCCESS,
+  // EDIT_FRIEND_FAILURE
 } from "../actions";
 
 const initialState = {
@@ -92,19 +92,19 @@ const reducer = (state = initialState, action) => {
         errorStatusCode: null,
         friends: action.payload
       };
-    case EDIT_FRIEND_START:
-      return {
-        ...state,
-        editingFriend: true
-      };
-    case EDIT_FRIEND_SUCCESS:
-      return {
-        ...state,
-        editingFriend: false,
-        error: "",
-        errorStatusCode: null,
-        friends: action.payload
-      };
+    // case EDIT_FRIEND_START:
+    //   return {
+    //     ...state,
+    //     editingFriend: true
+    //   };
+    // case EDIT_FRIEND_SUCCESS:
+    //   return {
+    //     ...state,
+    //     editingFriend: false,
+    //     error: "",
+    //     errorStatusCode: null,
+    //     friends: action.payload
+    //   };
     default:
       return state;
   }
