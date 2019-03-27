@@ -77,3 +77,25 @@ export const addFriend = friend => dispatch => {
       }
     });
 };
+
+export const EDIT_FRIEND_START = 'EDIT_FRIEND_START';
+export const EDIT_FRIEND_SUCCESS = 'EDIT_FRIEND_SUCCESS';
+export const EDIT_FRIEND_FAILURE = 'EDIT_FRIEND_FAILURE';
+
+export const editFriend = friend => dispatch => {
+  dispatch({ type: EDIT_FRIEND_START });
+  return axios
+    .put(`http://localhost:5000/api/friends/${friend.id}`, friend, {
+      headers: { Authorization: localStorage.getItem('token') }
+    })
+    .then(res => {
+      dispatch({ type: EDIT_FRIEND_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      if (err.response.status === 403) {
+        dispatch({ type: USER_UNAUTHORIZED, payload: err.response });
+      } else {
+        dispatch({ type: EDIT_FRIEND_FAILURE, payload: err.response });
+      }
+    });
+};

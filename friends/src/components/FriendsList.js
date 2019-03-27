@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Loader from "react-loader-spinner";
 
-import { getData, deleteFriends } from "../actions";
+import { getData, deleteFriends, editFriend } from "../actions";
 
 import EditForm from "./EditFrom";
 
@@ -20,6 +20,13 @@ class FriendsList extends React.Component {
   deleteFriend = id => {
     this.setState({ deletingFriendId: id });
     this.props.deleteFriends(id);
+  };
+
+  editFriend = (e, friend) => {
+    e.preventDefault();
+    this.props.editFriend(friend).then(() => {
+      this.setState({ editingFriendId: null });
+    });
   };
 
   render() {
@@ -77,6 +84,6 @@ const mapStateToProps = ({ friends, fetchingFriends, deletingFriend }) => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { getData, deleteFriends }
+    { getData, deleteFriends, editFriend }
   )(FriendsList)
 );
