@@ -1,16 +1,9 @@
 import React from 'react';
 import Loader from 'react-loader-spinner';
-import { connect } from 'react-redux';
 
-import { addFriend } from '../actions';
-
-class FriendForm extends React.Component {
+class EditForm extends React.Component {
   state = {
-    friend: {
-      name: '',
-      email: '',
-      age: ''
-    }
+    friend: this.props.friend
   };
 
   handleChanges = e => {
@@ -27,25 +20,14 @@ class FriendForm extends React.Component {
     });
   };
 
-  addFriend = e => {
-    e.preventDefault();
-    this.props.addFriend(this.state.friend).then(() => {
-      this.props.history.push('/protected');
-    });
-    this.setState({
-      friends: {
-        name: '',
-        email: '',
-        age: ''
-      }
-    });
+  editFriend = e => {
+    this.props.editFriend(e, this.state.friend);
   };
 
   render() {
     return (
-      <div className="friend-form">
-        <h2>Add New Friend 🦸‍♀️🦸‍♂️</h2>
-        <form className="form" onSubmit={this.addFriend}>
+      <div className="edit-form">
+        <form className="edit-form" onSubmit={this.editFriend}>
           <label htmlFor="name">Full Name</label>
           <input
             type="text"
@@ -75,10 +57,10 @@ class FriendForm extends React.Component {
           <div className="flex-spacer" />
 
           <button>
-            {this.props.addingFriend ? (
+            {this.props.editingFriend ? (
               <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
             ) : (
-              'Add Friend'
+              'Edit Friend'
             )}
           </button>
         </form>
@@ -87,11 +69,4 @@ class FriendForm extends React.Component {
   }
 }
 
-const mapStateToProps = ({ addingFriend }) => ({
-  addingFriend
-});
-
-export default connect(
-  mapStateToProps,
-  { addFriend }
-)(FriendForm);
+export default EditForm;

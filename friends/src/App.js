@@ -1,42 +1,28 @@
-import React, { Component } from "react";
+import React from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-import Friends from "./components/Friends";
-import FriendForm from "./components/FriendForm";
-import { connect } from "react-redux";
+import Login from './components/Login';
+import PrivateRoute from './components/PrivateRoute';
+import FriendsList from './components/FriendsList';
+import FriendForm from './components/FriendForm';
 
-import { fetchFriends, addFriend, deleteFriend } from "./store/actions";
-import "./App.css";
-
-class App extends Component {
-  componentDidMount() {
-    this.props.fetchFriends();
-  }
-
-  render() {
-    return (
+function App() {
+  return (
+    <Router>
       <div className="App">
-        <div className="wrapper">
-          <div className="content-wrapper">
-            <Friends {...this.props} />
-          </div>
-          <div className="form-wrapper">
-            <FriendForm {...this.props} />
-          </div>
-        </div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/friend-form">Add Friend</Link>
+              <Link to="/protected">Friends</Link>
+            </li>
+          </ul>
+        </nav>
+        <Route path="/login" component={Login} />
+        <PrivateRoute exact path="/protected" component={FriendsList} />
+        <PrivateRoute exact path="/friend-form" component={FriendForm} />
       </div>
-    );
-  }
+    </Router>
+  );
 }
-
-const mapStateToProps = state => ({
-  friends: state.friends,
-  isFetchingFriend: state.isFetchingFriends,
-  isAddingFriend: state.isAddingFriend,
-  isDeletingFriend: state.isDeletingFriend,
-  error: state.error
-});
-
-export default connect(
-  mapStateToProps,
-  { fetchFriends, addFriend, deleteFriend }
-)(App);
+export default App;
